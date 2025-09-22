@@ -1,1 +1,170 @@
-<p>Index</p>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<link rel="icon" type="image/png" sizes="180x180" href="favicon-180x180.png">
+<link rel="icon" type="image/png" sizes="48x48" href="favicon-48x48.png">   
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Busca Inteligente na Amazon</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff9900">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  .container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+  }
+  input[type="text"] {
+    padding: 12px;
+    width: 80%;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+  }
+  button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff9900;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background-color: #e68a00;
+  }
+  .progress-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 8px;
+    margin-top: 15px;
+    display: none;
+  }
+  .progress-bar {
+    width: 0%;
+    height: 15px;
+    background-color: #4caf50;
+    border-radius: 8px;
+  }
+  .result {
+    margin-top: 20px;
+    font-size: 16px;
+    display: none;
+  }
+  .result a {
+  color: #ff9900;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 20px;
+  /*text-shadow: 1px 1px 2px rgba(0,0,0,0.3);*/
+  }
+  
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Busca Inteligente na Amazon</h2>
+  <input type="text" id="produto" placeholder="Digite o produto desejado">
+  <br>
+  <button onclick="buscarProduto()">OK</button>
+
+  <div class="progress-container" id="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+function buscarProduto() {
+    const produto = document.getElementById("produto").value.trim();
+    if (!produto) {
+        alert("Digite o produto que deseja buscar!");
+        return;
+    }
+
+    const progressContainer = document.getElementById("progress-container");
+    const progressBar = document.getElementById("progress-bar");
+    const resultDiv = document.getElementById("result");
+
+    // Cria um elemento para a mensagem dinâmica
+    let msgDiv = document.getElementById("progress-msg");
+    if (!msgDiv) {
+        msgDiv = document.createElement("div");
+        msgDiv.id = "progress-msg";
+        msgDiv.style.marginTop = "10px";
+        msgDiv.style.fontStyle = "italic";
+        progressContainer.appendChild(msgDiv);
+    }
+
+    // Reset
+    progressContainer.style.display = "block";
+    progressBar.style.width = "0%";
+    msgDiv.innerText = "";
+    resultDiv.style.display = "none";
+    resultDiv.innerHTML = "";
+
+    // Mensagens dinâmicas
+    const mensagens = [
+        "Analisando preços...",
+        "Filtrando resultados...",
+        "Buscando ofertas...",
+        "Quase pronto..."
+    ];
+
+    let width = 0;
+    const interval = setInterval(() => {
+        width += Math.random() * 5 + 1; // incrementa de forma aleatória
+        if (width >= 100) width = 100;
+        progressBar.style.width = width + "%";
+
+        // Escolhe uma mensagem com base na porcentagem
+        const index = Math.min(Math.floor((width / 100) * mensagens.length), mensagens.length - 1);
+        msgDiv.innerText = mensagens[index];
+
+        if (width >= 100) {
+            clearInterval(interval);
+
+            // Gera link de afiliado
+            const termo = encodeURIComponent(produto);
+            const linkAfiliado = `https://www.amazon.com.br/s?k=${termo}&tag=limnuz-20`;
+            resultDiv.innerHTML = `Nossa <b>IA</b> encontrou as melhores opções de <strong>${produto}</strong>!<br><br><a href="${linkAfiliado}" target="_blank">Clique aqui para acessar na Amazon</a>`;
+            resultDiv.style.display = "block";
+
+            // Oculta a mensagem após concluir
+            msgDiv.innerText = "";
+        }
+    }, 300);
+}
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('service-worker.js')
+    .then(function(registration) {
+      console.log('ServiceWorker registrado com sucesso:', registration.scope);
+    }, function(err) {
+      console.log('Falha ao registrar ServiceWorker:', err);
+    });
+  });
+}
+</script>
+
+</body>
+</html>

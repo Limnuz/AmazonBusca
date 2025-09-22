@@ -90,10 +90,6 @@
   <div class="result" id="result"></div>
 </div>
 
-<footer style="text-align:center; margin-top:20px; font-size:14px; color:#555;">
-  <p>Visitas: <span id="contador"></span></p>
-</footer>
-
 <script>
 function buscarProduto() {
     const produto = document.getElementById("produto").value.trim();
@@ -168,15 +164,6 @@ if ('serviceWorker' in navigator) {
     });
   });
 }
-</script>
-
-
-<script>
-fetch('https://api.countapi.xyz/hit/limnuz/amazonbusca')
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById('contador').innerText = data.value;
-  });
 </script>
 
 </body>

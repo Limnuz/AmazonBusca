@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sobre — AmazonBusca</title>
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icon-192.png">
+  <style>
+    :root{
+      --brand:#ff9900;
+      --bg:#0f1115;
+      --fg:#e8eaed;
+      --muted:#a6adbb;
+      --card:#151822;
+      --border:#24283b;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial;
+      color:var(--fg); background:linear-gradient(180deg,#0d0f14, var(--bg));
+    }
+    header,main,footer{max-width:880px; margin:auto; padding:16px}
+    header{
+      display:flex; align-items:center; gap:12px; padding-top:28px; padding-bottom:8px;
+      border-bottom:1px solid var(--border)
+    }
+    .logo{width:36px; height:36px; border-radius:8px; background:var(--brand)}
+    h1{margin:0; font-size:1.6rem}
+    .tagline{color:var(--muted); margin:6px 0 0}
+    .card{
+      background:var(--card); border:1px solid var(--border); border-radius:14px;
+      padding:20px; margin:18px 0;
+    }
+    h2{margin:0 0 8px; font-size:1.2rem}
+    ul{margin:8px 0 0 18px}
+    code{kbd,code{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace}}
+    code{
+      background:#0b0d12; padding:2px 6px; border:1px solid var(--border); border-radius:8px;
+    }
+    a{color:var(--brand); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .grid{display:grid; gap:12px}
+    @media (min-width:720px){ .grid{grid-template-columns:1fr 1fr} }
+    footer{color:var(--muted); border-top:1px solid var(--border); margin-top:28px; padding-bottom:36px}
+    .nav{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      display:inline-block; padding:10px 14px; border-radius:10px; background:#1a1f2e;
+      border:1px solid var(--border); color:var(--fg)
+    }
+    .btn:hover{background:#20263a}
+    .disclaimer{font-size:.9rem; color:var(--muted)}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo" aria-hidden="true"></div>
+    <div>
+      <h1>AmazonBusca</h1>
+      <p class="tagline">Gera links de busca na Amazon com a sua tag de afiliado.</p>
+      <nav class="nav" aria-label="Navegação">
+        <a class="btn" href="index.html">← Voltar para a página inicial</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>O que é?</h2>
+      <p>
+        O <strong>AmazonBusca</strong> é uma página simples que cria links de busca na Amazon já com a sua
+        <em>tag de afiliado</em>. Você digita um termo (por ex. <em>“kindle paperwhite”</em>) e recebe um link de busca
+        pronto para compartilhar.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Como usar</h2>
+        <ul>
+          <li>Abra <code>index.html</code> do projeto publicado (GitHub Pages).</li>
+          <li>Digite o termo de busca e confirme.</li>
+          <li>O site gera um link do tipo: <br>
+            <code>https://www.amazon.com.br/s?k=TERMO&amp;tag=SUA_TAG</code>
+          </li>
+          <li>Copie e compartilhe.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Como funciona</h2>
+        <p>
+          A página monta a URL de busca da Amazon e acrescenta o parâmetro <code>tag</code> com a sua identificação de
+          afiliado (ex.: <code>minha-tag-20</code>). Nenhum backend é necessário; tudo roda no navegador.
+        </p>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>Privacidade</h2>
+        <ul>
+          <li>Não coletamos nem enviamos dados pessoais.</li>
+          <li>As buscas são processadas localmente no seu navegador.</li>
+          <li>Ao clicar no link, você vai para o site da Amazon, sujeito às políticas de lá.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Limitações</h2>
+        <ul>
+          <li>A disponibilidade e resultados dependem da Amazon.</li>
+          <li>Alguns parâmetros podem variar por país/região da loja.</li>
+          <li>Links quebrados? Verifique sua <code>tag</code> e o formato da URL.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Declaração de Afiliado</h2>
+      <p class="disclaimer">
+        Como participante do Programa de Associados da Amazon, este projeto pode receber comissões por compras
+        qualificadas feitas através dos links gerados.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Contato & suporte</h2>
+      <p>
+        Encontrou um problema ou tem sugestão? Abra uma <a href="issues">Issue</a> no repositório ou crie um Pull
+        Request. 😄
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <p>© <span id="ano"></span> AmazonBusca — Código no GitHub. Feito com ❤️.</p>
+  </footer>
+
+  <script>
+    // Atualiza ano automaticamente
+    document.getElementById('ano').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

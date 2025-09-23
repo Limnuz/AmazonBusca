@@ -8,16 +8,7 @@
   <h1>Bem-vindo!!!</h1>
   <p>Esta página já foi visitada <span id="visitas"></span> vezes.</p>
 
-<script>
-  fetch("https://api.countapi.xyz/hit/limnuz-amazonbusca/visitas")
-    .then(res => res.json())
-    .then(data => {
-      document.getElementById("visitas").innerText = data.value;
-    })
-    .catch(err => {
-      console.error("Erro no contador:", err);
-      document.getElementById("visitas").innerText = "erro";
-    });
-</script>
+<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https://limnuz.github.io/AmazonBusca/&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Visitas&edge_flat=false"/>
+
 </body>
 </html>

@@ -4,8 +4,8 @@ const urlsToCache = [
   "/index.html",
   "/style.css",   // se você tiver arquivo CSS separado
   "/script.js",   // se você tiver JS separado
-  "/icon-192.png",
-  "/icon-512.png"
+  "images/icon-192.png",
+  "images/icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
@@ -23,3 +23,4 @@ self.addEventListener("fetch", (event) => {
     })
   );
 });
+

@@ -8,13 +8,16 @@
   <h1>Bem-vindo!!!</h1>
   <p>Esta página já foi visitada <span id="visitas"></span> vezes.</p>
 
-  <script>
-    // "hit" incrementa o contador e retorna o valor atualizado
-    fetch("https://api.countapi.xyz/hit/seuusuario-github/amazonbusca")
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById("visitas").innerText = data.value;
-      });
-  </script>
+<script>
+  fetch("https://api.countapi.xyz/hit/limnuz-amazonbusca/visitas")
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("visitas").innerText = data.value;
+    })
+    .catch(err => {
+      console.error("Erro no contador:", err);
+      document.getElementById("visitas").innerText = "erro";
+    });
+</script>
 </body>
 </html>
